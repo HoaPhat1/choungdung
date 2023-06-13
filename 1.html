@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Kho ứng dụng IOS - Android</title>
+    <style>
+        h2 
+        {
+            color: blue; 
+           
+        }
+       
+        .tab 
+        {
+            overflow: hidden;
+        }
+
+            .tab button {
+                background-color: #f2f2f2;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 10px 20px;
+                transition: background-color 0.3s;
+            }
+
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+        .tabcontent 
+        {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+            .tabcontent button {
+                background-color: #f2f2f2;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 10px 20px;
+                transition: background-color 0.3s;
+            }
+                .tabcontent button:hover {
+                    background-color: #ddd;
+                }
+
+        
+        .tablinks.active, .subtablinks.active {
+            background-color: #048e70;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h2>Kho ứng dụng từ nhiều nguồn cập nhật liên tục</h2>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'tabIOS')">IOS</button>
+        <button class="tablinks" onclick="openTab(event, 'tabAndroid')">Android</button>
+    </div>
+
+    <div id="tabIOS" class="tabcontent">
+        <div class="subtab">
+            <button class="subtablinks" onclick="openSubTab(event, 'subTabApp')">Ứng dụng</button>
+            <button class="subtablinks" onclick="openSubTab(event, 'subTabGame')">Game</button>
+        </div>
+
+        <div id="subTabApp" class="subtabcontent" style="display: block;">
+            <h1></h1>
+            <a href="https://example.com">
+                <img src="https://logolook.net/wp-content/uploads/2022/11/Picsart-Logo.png" alt="Picsart" width="80" height="50">
+            </a>
+            <h>Picsart - Ứng dụng chỉnh sửa ảnh</h>
+        </div>
+
+        <div id="subTabGame" class="subtabcontent" style="display: none;">
+            <h3>Nội dung Sub Tab 2</h3>
+            <p>Đây là nội dung của sub tab 2 trong tab IOS.</p>
+        </div>
+    </div>
+
+    <div id="tabAndroid" class="tabcontent">
+
+        <div class="subtab">
+            <button class="subtablinks" onclick="openSubTab(event, 'subTabAndroidApp')">Ứng dụng</button>
+            <button class="subtablinks" onclick="openSubTab(event, 'subTabAndroidGame')">Game</button>
+        </div>
+        <div id="subTabAndroidApp" class="subtabcontent" style="display: none;">
+            <h3>Nội dung Sub Tab 1</h3>
+            <p>Đây là nội dung của sub tab 1 trong tab Android.</p>
+        </div>
+        <div id="subTabAndroidGame" class="subtabcontent" style="display: none;">
+            <h3>Nội dung Sub Tab 2</h3>
+            <p>Đây là nội dung của sub tab 2 trong tab Android.</p>
+        </div>
+    </div>
+    <script>
+        var previousTab = ""; // Biến lưu trạng thái tab trước đó
+        var previousSubTab = ""; // Biến lưu trạng thái subtab trước đó
+
+        document.addEventListener("DOMContentLoaded", function () {
+            openTab(null, "tabIOS"); // Hiển thị tabIOS khi trang được tải lần đầu
+        });
+
+        function openTab(evt, tabName) {
+            var tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Lưu trạng thái trước đó
+            previousSubTab = "";
+            if (previousTab !== "") {
+                document.getElementById(previousTab).style.display = "none";
+            }
+
+            // Hiển thị tab mới và lưu trạng thái hiện tại
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).getElementsByClassName("subtablinks")[0].click();
+            previousTab = tabName;
+            if (evt !== null) {
+                evt.currentTarget.className += " active";
+            }
+        }
+
+        function openSubTab(evt, subTabName) {
+            var subtabcontent, subtablinks;
+            subtabcontent = document.getElementsByClassName("subtabcontent");
+            for (var i = 0; i < subtabcontent.length; i++) {
+                subtabcontent[i].style.display = "none";
+            }
+            subtablinks = document.getElementsByClassName("subtablinks");
+            for (var i = 0; i < subtablinks.length; i++) {
+                subtablinks[i].className = subtablinks[i].className.replace(" active", "");
+            }
+
+            // Lưu trạng thái trước đó
+            if (previousSubTab !== "") {
+                document.getElementById(previousSubTab).style.display = "none";
+            }
+
+            // Hiển thị subtab mới và lưu trạng thái hiện tại
+            document.getElementById(subTabName).style.display = "block";
+            previousSubTab = subTabName;
+            if (evt !== null) {
+                evt.currentTarget.className += " active";
+            }
+        }
+    </script>
+
+</body>
+</html>
